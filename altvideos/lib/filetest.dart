@@ -3,10 +3,6 @@ import 'dart:io';
 import 'package:file_manager/file_manager.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -61,57 +57,53 @@ class HomePage extends StatelessWidget {
               controller: controller,
               builder: (context, snapshot) {
                 final List<FileSystemEntity> entities = snapshot;
-                return Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  child: ListView.builder(
-                    itemCount: entities.length,
-                    itemBuilder: (context, index) {
-                      FileSystemEntity entity = entities[index];
-                      return Card(
-                        child: ListTile(
-                          leading: FileManager.isFile(entity)
-                              ? Icon(Icons.feed_outlined)
-                              : Icon(Icons.folder),
-                          title: Text(FileManager.basename(entity)),
-                          subtitle: subtitle(entity),
-                          onTap: () async {
-                            if (FileManager.isDirectory(entity)) {
-                              // open the folder
-                              controller.openDirectory(entity);
+                return ListView.builder(
+                  itemCount: entities.length,
+                  itemBuilder: (context, index) {
+                    FileSystemEntity entity = entities[index];
+                    return Card(
+                      child: ListTile(
+                        leading: FileManager.isFile(entity)
+                            ? Icon(Icons.feed_outlined)
+                            : Icon(Icons.folder),
+                        title: Text(FileManager.basename(entity)),
+                        subtitle: subtitle(entity),
+                        onTap: () async {
+                          if (FileManager.isDirectory(entity)) {
+                            // open the folder
+                            controller.openDirectory(entity);
 
-                              // delete a folder
-                              // await entity.delete(recursive: true);
+                            // delete a folder
+                            // await entity.delete(recursive: true);
 
-                              // rename a folder
-                              // await entity.rename("newPath");
+                            // rename a folder
+                            // await entity.rename("newPath");
 
-                              // Check weather folder exists
-                              // entity.exists();
+                            // Check weather folder exists
+                            // entity.exists();
 
-                              // get date of file
-                              // DateTime date = (await entity.stat()).modified;
-                            } else {
-                              // delete a file
-                              // await entity.delete();
+                            // get date of file
+                            // DateTime date = (await entity.stat()).modified;
+                          } else {
+                            // delete a file
+                            // await entity.delete();
 
-                              // rename a file
-                              // await entity.rename("newPath");
+                            // rename a file
+                            // await entity.rename("newPath");
 
-                              // Check weather file exists
-                              // entity.exists();
+                            // Check weather file exists
+                            // entity.exists();
 
-                              // get date of file
-                              // DateTime date = (await entity.stat()).modified;
+                            // get date of file
+                            // DateTime date = (await entity.stat()).modified;
 
-                              // get the size of the file
-                              // int size = (await entity.stat()).size;
-                            }
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                            // get the size of the file
+                            // int size = (await entity.stat()).size;
+                          }
+                        },
+                      ),
+                    );
+                  },
                 );
               },
             ),
