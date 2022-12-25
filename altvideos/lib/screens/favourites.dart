@@ -1,4 +1,5 @@
 import 'package:altvideos/constants/Appstyle.dart';
+import 'package:altvideos/constants/ConstWidgets.dart';
 import 'package:altvideos/widgets/tiles/previewBoxTile.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +46,8 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                   height: double.maxFinite,
                   child: ListView(
                     children: [
-                      PreviewLongTile(),
+                      IconTile(
+                          child: Text('Video'), icondata: Icons.video_call),
                       VideoLongTile(),
                       PreviewLongTile(),
                       PreviewLongTile(),
